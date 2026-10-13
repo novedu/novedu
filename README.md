@@ -6,10 +6,14 @@
 
 `LLM Application`　`Agent Runtime`　`Streaming UI`　`Enterprise AI`
 
-5 年企业级前端开发经验（**ERP / OA** 等复杂业务系统），其中包含**企业级 AI 知识问答平台**的
-前端落地：SSE / Fetch Stream 对接 LLM 流式响应、RAG 问答链路对接、多会话与消息状态管理。
+5 年企业级前端开发经验（ERP / OA 等复杂业务系统），
+近期聚焦 AI Application Engineering。
 
-做的事是把大模型能力接进真实业务——**运行时编排、流式交互、上下文治理、可观测性**。
+具备企业级 AI 知识问答平台落地经验：
+SSE / Fetch Stream 对接 LLM 流式响应、RAG 问答链路、多会话状态管理。
+
+关注方向：
+Agent Runtime、Streaming UI、Enterprise AI。
 
 ---
 
@@ -19,7 +23,7 @@
 |---|---|
 | **ERP / OA 复杂业务系统** | 企业 AI 应用要嵌入审批流、权限体系、多角色视图——这是我一直在做的场景 |
 | **复杂业务状态管理** | Agent 是多阶段长时运行任务，前端要处理流式事件、部分失败、重试、取消，状态复杂度远高于传统 CRUD |
-| **前端工程化** | 类型系统、monorepo、CI、可观测性——决定 AI 应用停在原型，还是能交付 |
+| **前端工程化** | 类型系统、工程规范、CI、可维护架构，让 AI 应用从 Demo 走向可交付 |
 | **AI 应用工程（近一年）** | Agent Runtime 编排、Tool Calling、RAG、Prompt 工程、流式 UI |
 
 ## 我在做什么
@@ -46,6 +50,9 @@
 
 ```text
 Planner → WorkflowRunner → ToolExecutor → RAG → Memory → Reflection → Evaluator → Final Answer
+
+面向前端视角，重点解决 Agent 长流程任务中的状态同步、
+事件流展示、多视图一致性问题。
 ```
 
 **技术要点**
@@ -66,9 +73,9 @@ Planner → WorkflowRunner → ToolExecutor → RAG → Memory → Reflection �
 
 ---
 
-### [spark-workshop](https://github.com/novedu/spark-workshop) · 灵光一闪 AI 创意工坊
+### [spark-workshop](https://github.com/novedu/spark-workshop) · LLM Application 实践项目
 
-> 把「我有个想法」推进到「可以开书」，中间那段最费脑力的结构工程交给 AI 辅助。
+> AI 创意写作工具 把「我有个想法」推进到「可以开书」，中间那段最费脑力的结构工程交给 AI 辅助。
 
 **真实接入 LLM 的项目**：9 个服务端代理路由 + 完整 Prompt 模板库，通过 OpenAI 兼容网关调用模型，
 API Key 只留在服务端。从一句话灵感出发，生成 3 个世界观方向，进入可编辑大纲，
@@ -82,7 +89,7 @@ API Key 只留在服务端。从一句话灵感出发，生成 3 个世界观方
 
 ---
 
-### [enterprise-admin-kit](https://github.com/novedu/enterprise-admin-kit) · 企业中后台 + AI Runtime
+### [enterprise-admin-kit](https://github.com/novedu/enterprise-admin-kit) · 企业中后台 AI Runtime 架构探索
 
 > Chat 只负责渲染状态，AI 行为由 Runtime 层承接。
 
