@@ -1,5 +1,7 @@
 # REN
 
+📫 731872977@qq.com
+
 **Frontend Engineer → AI Application / Agent Platform Engineering**
 
 `LLM Application`　`Agent Runtime`　`Streaming UI`　`Enterprise AI`
@@ -9,7 +11,7 @@
 
 不仅是调用模型 API，而是关注 AI 产品中的交互体验、运行状态管理、上下文治理以及系统集成。
 
-📍 杭州　·　📫 731872977@qq.com
+
 
 ---
 
