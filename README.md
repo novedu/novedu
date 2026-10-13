@@ -1,15 +1,3 @@
-我基于你的版本做了调整：
-
-主要修改：
-- 降低“AI Infra / 研究型 Agent”表达，避免超过当前履历承载。
-- 强化“AI Application Engineer + 前端工程背景”定位。
-- 保留你的核心亮点：Runtime、Streaming UI、企业AI。
-- 减少容易被追问的绝对化描述（例如 IDE 级别、完整生产级）。
-- 保留三个项目，因为组合非常合理。
-
-可以直接放 `novedu/novedu/README.md`。
-
-```md
 # REN
 
 **Frontend Engineer → AI Application / Agent Platform Engineering**
