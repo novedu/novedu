@@ -1,11 +1,25 @@
+我基于你的版本做了调整：
+
+主要修改：
+- 降低“AI Infra / 研究型 Agent”表达，避免超过当前履历承载。
+- 强化“AI Application Engineer + 前端工程背景”定位。
+- 保留你的核心亮点：Runtime、Streaming UI、企业AI。
+- 减少容易被追问的绝对化描述（例如 IDE 级别、完整生产级）。
+- 保留三个项目，因为组合非常合理。
+
+可以直接放 `novedu/novedu/README.md`。
+
+```md
 # REN
 
 **Frontend Engineer → AI Application / Agent Platform Engineering**
 
 `LLM Application`　`Agent Runtime`　`Streaming UI`　`Enterprise AI`
 
-5 年前端工程经验。现在做的事是把大模型能力**工程化**——
-不是调通一个 API，而是让它在真实产品里**可靠、可观测、可交付**。
+5 年前端工程经验，长期参与企业级 ERP、OA、业务管理系统开发。  
+目前关注 AI 应用工程方向，探索如何将大模型能力融入真实产品：
+
+不仅是调用模型 API，而是关注 AI 产品中的交互体验、运行状态管理、上下文治理以及系统集成。
 
 📍 杭州　·　📫 731872977@qq.com
 
@@ -13,102 +27,175 @@
 
 ## 我在做什么
 
-| 方向 | 具体做的事 |
-|---|---|
-| **LLM Application** | 把模型能力做成有状态、可恢复、可交付的产品，而不是一次性问答 |
-| **Agent Runtime** | 设计 Planner / Tool / RAG / Memory / Reflection / Evaluation 的编排与生命周期 |
-| **Streaming UI** | SSE 事件流 → 前端状态机，让多个视图共享同一份运行时状态 |
-| **Enterprise AI** | Provider 抽象、上下文治理、权限体系、可观测性——让 AI 能真正进企业系统 |
+| 方向 | 关注点 |
+| --- | --- |
+| **LLM Application** | 将模型能力封装为可交互、可维护的应用，而不是一次性的问答 Demo |
+| **Agent Runtime** | 探索任务编排、工具调用、上下文管理以及 Agent 生命周期管理 |
+| **Streaming UI** | SSE 事件流驱动前端状态管理，实现实时、可解释的 AI 交互体验 |
+| **Enterprise AI** | 将 AI 能力结合企业系统中的权限、数据和业务流程 |
 
 ---
 
 ## 核心项目
 
-### [agent-studio](https://github.com/novedu/agent-studio) · AI Agent Runtime 控制台
+## [agent-studio](https://github.com/novedu/agent-studio) · AI Agent Runtime 控制台
 
-> 把 Agent 的每一个决策，变成可观测、可解释的事件流。
+> 一个面向 Agent 应用开发的运行时控制台，用于观察和理解 Agent 执行过程。
 
-IDE 级别的运行时控制台。Chat / Graph / Timeline / Inspector 四个视图
-从**同一份运行时状态**投影出来，完整呈现 Agent 从规划到评测的全过程。
+通过统一运行状态模型，将 Chat、Graph、Timeline、Inspector 等多个视图连接起来，让 Agent 的执行过程更加透明。
 
-**运行时链路**
+### 运行时链路
 
 ```text
-Planner → WorkflowRunner → ToolExecutor → RAG → Memory → Reflection → Evaluator → Final Answer
+Planner
+   ↓
+Workflow Runner
+   ↓
+Tool Executor
+   ↓
+Context Manager
+   ↓
+Memory / Knowledge Retrieval
+   ↓
+Response Generation
+   ↓
+Evaluation
 ```
 
-**技术要点**
+### 技术实践
 
-- **Agent Runtime** — 各阶段解耦、独立可观测；任务创建 / 查询 / 取消 / 重试
-- **Tool Calling** — ToolRegistry 注册 + ToolExecutor 执行，工具失败重试与降级链路
-- **RAG** — 文档分块、检索召回、引用溯源，结果作为上下文回灌
-- **SSE Streaming** — 15 类运行时事件实时推送，前端状态机驱动多视图同步
-- **Observability** — trace / latency / token 三类指标贯穿全链路
-- **RuntimeObject** — 统一投影模型，消除"时间线显示执行中、对话区显示已完成"这类不一致
+- **Agent Runtime**
+  - 设计任务执行流程，拆分 Planner、Tool、Runtime 等核心模块
+  - 支持任务状态管理、执行过程追踪
 
-`TypeScript` `React` `Node.js` `Agent Runtime` `SSE Streaming` `Tool Calling` `RAG` `Observability`
+- **Tool Calling**
+  - 通过 Tool Registry 管理工具能力
+  - 支持工具执行、异常处理以及结果回传
+
+- **SSE Streaming**
+  - 服务端推送运行事件
+  - 前端通过状态管理同步展示 Agent 执行过程
+
+- **Runtime State Model**
+  - 设计统一运行状态模型
+  - 避免聊天窗口、时间线、执行图之间的数据状态不一致
+
+- **Observability**
+  - 记录执行过程、耗时、事件轨迹
+  - 辅助调试 Agent 行为
+
+`TypeScript` `React` `Node.js` `SSE` `Agent Runtime` `Tool Calling` `RAG`
 
 ---
 
-### [enterprise-admin-kit](https://github.com/novedu/enterprise-admin-kit) · Enterprise AI Platform
+## [enterprise-admin-kit](https://github.com/novedu/enterprise-admin-kit) · Enterprise AI Platform
 
-> Chat 只负责渲染状态，AI 行为全部由 Runtime 层承接。
+> 企业级中后台 + AI 应用控制平台探索。
 
-企业级中后台 + LLM 应用控制平面。把 AI 从「写死在页面里的功能」
-变成「可配置、可调试、可观测的运行时系统」。
+将 AI 能力从页面中的单次调用抽离，通过 Runtime 层统一管理模型调用、上下文处理和业务能力。
 
-**分层架构**
+### 分层设计
 
 ```text
-Chat UI → useChatRuntime → ChatRuntime → EventBus
-        → Provider → Context Manager → Prompt Engine
-        → Knowledge (RAG) → Observability
+Chat UI
+   ↓
+Chat Runtime
+   ↓
+Event Bus
+   ↓
+Provider
+   ↓
+Context Manager
+   ↓
+Prompt Engine
+   ↓
+Knowledge Layer
+   ↓
+Observability
 ```
 
-**技术要点**
+### 技术实践
 
-- **LLM Runtime** — ChatRuntime 编排内核 + EventBus 事件驱动生命周期
-- **Prompt** — 模板注册表、变量注入、渲染预览
-- **Knowledge** — 文档分块、关键词检索、引用展示，作为 RAG 知识层
-- **RBAC** — 路由 / 菜单 / 按钮 / 字段四级权限控制
-- **Provider 抽象** — 多模型切换、能力契约、统一错误模型（OpenAI / Claude / Qwen / DeepSeek）
-- **治理能力** — Context Manager 的 token 估算与压缩；RuntimeGuard 的超时、重试、熔断
+- **LLM Runtime**
+  - 通过 Runtime 层管理 AI 对话生命周期
+  - 使用事件驱动方式解耦 UI 与 AI 逻辑
 
-`Vue3` `TypeScript` `Enterprise AI Platform` `RBAC` `LLM Runtime` `Prompt` `Knowledge`
+- **Prompt Management**
+  - 支持 Prompt 模板管理
+  - 统一变量注入和调用流程
+
+- **Knowledge Layer**
+  - 探索文档切分、检索和知识引用展示
+
+- **Provider 抽象**
+  - 设计统一模型调用接口
+  - 支持 OpenAI Compatible API 扩展
+
+- **Enterprise Capability**
+  - 结合企业系统经验设计 RBAC 权限模型
+  - 支持路由、菜单、按钮、字段级权限控制
+
+`Vue3` `TypeScript` `Enterprise AI` `RBAC` `LLM Runtime` `Prompt`
 
 ---
 
 ## 其他探索
 
-### [spark-workshop](https://github.com/novedu/spark-workshop) · 灵光一闪 AI 创意工坊
+## [spark-workshop](https://github.com/novedu/spark-workshop) · LLM 创意辅助应用
 
-> 把「我有个想法」推进到「可以开书」，中间那段最费脑力的结构工程交给 AI 辅助。
+> 一个探索真实 LLM 应用流程的项目。
 
-**真实 LLM 的项目**（OpenAI 兼容网关，服务端代理）。从一句话灵感出发，
-生成 3 个世界观方向，进入可编辑大纲，再用理论引擎检测发现故事可能崩盘的地方。
+通过 OpenAI Compatible API，将大模型能力应用于创意生成和内容辅助流程。
 
-- **完整链路** — 灵感引爆 → 世界观方案 → 卷纲 → 世界状态 → 前 30 章节奏表 → 正文试写
-- **理论诊断引擎** — 8 个可解释引擎，诊断结果**引用具体字段作为证据**，而非黑盒打分
-- **人是决策者** — AI 生成的正文候选必须经作者采纳才写入；失败保留原稿，绝不用 mock 冒充
+### 技术实践
 
-`Next.js` `React` `TypeScript` `LLM` `Prompt Engineering` `IndexedDB`
+- **完整 AI Workflow**
+  - 灵感输入
+  - 方向生成
+  - 内容规划
+  - 编辑优化
+
+- **LLM Integration**
+  - 接入真实模型服务
+  - 处理模型请求、响应以及错误情况
+
+- **Human-in-the-loop**
+  - AI 生成结果由用户确认后进入下一阶段
+  - 保留人工决策流程
+
+`Next.js` `React` `TypeScript` `LLM` `Prompt Engineering`
 
 ---
 
 ## 技术栈
 
-**前端**　`TypeScript` `React` `Vue 3` `Next.js` `Vite` `Pinia` `Zustand`
+**Frontend**
 
-**AI 应用**　`Agent / Tool Calling` `RAG` `Prompt Engineering`
-`Context / Token 治理` `SSE Streaming` `LLM Observability`
+`TypeScript` `React` `Vue3` `Next.js` `Vite` `Pinia` `Zustand`
 
-**后端 & 工程化**　`Node.js` `Express` `Prisma` `monorepo` `CI/CD` `Docker`
+**AI Application**
+
+`Agent` `Tool Calling` `RAG`  
+`Prompt Engineering` `Context Management`  
+`SSE Streaming` `LLM Application`
+
+**Engineering**
+
+`Node.js` `Express` `monorepo` `CI/CD` `Docker`
 
 ---
 
 ## 关于我
 
-- **5 年前端开发经验**，转型 AI Application / Agent Platform Engineering
-- 相信模型能力会越来越便宜，**把它变成可靠产品的工程能力不会**
-- 关注方向：Agent Runtime、Streaming UI、LLM 可观测性
-- 目前在看机会，欢迎交流
+- **5 年前端开发经验**，主要参与企业级 ERP、OA、业务管理系统开发
+- 正在探索 AI Application / Agent Platform Engineering 方向
+- 关注方向：
+  - Agent Runtime
+  - AI 交互体验
+  - Streaming UI
+  - 企业 AI 应用
+
+相信未来 AI 能力会越来越容易获得，而将这些能力稳定地融入真实产品，需要持续积累的工程能力。
+
+目前在寻找 AI 应用工程、AI 前端、Agent 平台相关机会。
+```
