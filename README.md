@@ -1,7 +1,5 @@
 # REN
 
-📫 731872977@qq.com
-
 **Frontend Engineer → AI Application Engineering**
 
 `LLM Application`　`Agent Runtime`　`Streaming UI`　`Enterprise AI`
@@ -10,27 +8,28 @@
 做的事是把大模型能力接进真实业务——**运行时编排、流式交互、上下文治理、可观测性**，
 而不只是调通一个 API。
 
-
+📍 杭州　·　📫 731872977@qq.com
+🎯 目标岗位：AI 应用工程师 · AI 前端工程师 · Agent 平台前端
 
 ---
 
 ## 5 年前端经验在 AI 应用里的作用
 
-| 过去积累                  | 在 AI 应用中的对应价值                                       |
-| ------------------------- | ------------------------------------------------------------ |
+| 过去积累 | 在 AI 应用中的对应价值 |
+|---|---|
 | **ERP / OA 复杂业务系统** | 企业 AI 应用要嵌入审批流、权限体系、多角色视图——这是我一直在做的场景 |
-| **复杂业务状态管理**      | Agent 是多阶段长时运行任务，前端要处理流式事件、部分失败、重试、取消，状态复杂度远高于传统 CRUD |
-| **前端工程化**            | 类型系统、monorepo、CI、可观测性——决定 AI 应用停在原型，还是能交付 |
-| **AI 应用工程（近一年）** | Agent Runtime 编排、Tool Calling、RAG、Prompt 工程、流式 UI  |
+| **复杂业务状态管理** | Agent 是多阶段长时运行任务，前端要处理流式事件、部分失败、重试、取消，状态复杂度远高于传统 CRUD |
+| **前端工程化** | 类型系统、monorepo、CI、可观测性——决定 AI 应用停在原型，还是能交付 |
+| **AI 应用工程（近一年）** | Agent Runtime 编排、Tool Calling、RAG、Prompt 工程、流式 UI |
 
 ## 我在做什么
 
-| 方向                | 具体做的事                                                   |
-| ------------------- | ------------------------------------------------------------ |
-| **LLM Application** | 把模型能力做成有状态、可恢复的交互产品，而不是一次性问答     |
-| **Agent Runtime**   | 设计 Planner / Tool / RAG / Memory / Reflection / Evaluation 的编排与生命周期 |
-| **Streaming UI**    | SSE 事件流 → 前端状态机，让多个视图共享同一份运行时状态      |
-| **Enterprise AI**   | Provider 抽象、上下文治理、权限体系、可观测性                |
+| 方向 | 具体做的事 |
+|---|---|
+| **LLM Application** | 把模型能力做成有状态、可恢复的交互产品，而不是一次性问答 |
+| **Agent Runtime** | 设计 Planner / Tool / RAG / Memory / Reflection / Evaluation 的编排与生命周期 |
+| **Streaming UI** | SSE 事件流 → 前端状态机，让多个视图共享同一份运行时状态 |
+| **Enterprise AI** | Provider 抽象、上下文治理、权限体系、可观测性 |
 
 ---
 
