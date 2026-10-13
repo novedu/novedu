@@ -4,7 +4,9 @@
 
 `LLM Application`　`Agent Runtime`　`Streaming UI`　`Enterprise AI`
 
-5 年企业级前端开发经验（**ERP / OA** 等复杂业务系统），近一年聚焦 AI 应用工程。
+5 年企业级前端开发经验（**ERP / OA** 等复杂业务系统），其中包含**企业级 AI 知识问答平台**的
+前端落地：SSE / Fetch Stream 对接 LLM 流式响应、RAG 问答链路对接、多会话与消息状态管理。
+
 做的事是把大模型能力接进真实业务——**运行时编排、流式交互、上下文治理、可观测性**，
 而不只是调通一个 API。
 
@@ -128,6 +130,20 @@ Chat UI → useChatRuntime → ChatRuntime → EventBus
 **AI 应用**　`Agent / Tool Calling` `RAG` `Prompt Engineering` `Context / Token 治理` `SSE Streaming` `LLM 可观测性`
 
 **后端 & 工程化**　`Node.js` `Express` `Prisma` `monorepo` `CI/CD` `Docker`
+
+---
+
+## 实现说明
+
+各项目的**实现边界与真实程度**已在对应仓库 README 中如实披露，关键三处：
+
+| 项目 | 实现边界 | 详见 |
+|---|---|---|
+| **agent-studio** | LLM 层支持接入 OpenAI 兼容模型（未配置时 Mock 回退，离线可跑）；RAG 为**关键词检索**，无 Embedding / 向量库 | [Implementation Notes](https://github.com/novedu/agent-studio#implementation-notes实现说明) |
+| **spark-workshop** | **真实调用 LLM**（9 个服务端代理路由，API Key 只留服务端）；无自动化测试与 CI | [LLM 接入方式](https://github.com/novedu/spark-workshop#llm-接入方式真实调用) |
+| **enterprise-admin-kit** | Provider 为 **Mock / Stub 实现，未接入真实模型**；知识层为关键词检索 | [Provider 实现状态](https://github.com/novedu/enterprise-admin-kit#provider-实现状态如实说明) |
+
+另两个项目：`schemaCode` 为**非 AI** 的企业软件架构项目；`World-Link-Alpha` 的 AI 辅助端点为**本地启发式实现**。
 
 ---
 
