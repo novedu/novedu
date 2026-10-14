@@ -1,19 +1,17 @@
-# TAO
-
-📫 731872977@qq.com
+# REN
 
 **Frontend Engineer → AI Application Engineering**
 
 `LLM Application`　`Agent Runtime`　`Streaming UI`　`Enterprise AI`
 
-5 年企业级前端开发经验（ERP / OA 等复杂业务系统），
-近期聚焦 AI Application Engineering。
+5 年企业级前端开发经验（**ERP / OA** 等复杂业务系统），其中包含**企业级 AI 知识问答平台**的
+前端落地：SSE / Fetch Stream 对接 LLM 流式响应、RAG 问答链路对接、多会话与消息状态管理。
 
-具备企业级 AI 知识问答平台落地经验：
-SSE / Fetch Stream 对接 LLM 流式响应、RAG 问答链路、多会话状态管理。
+做的事是把大模型能力接进真实业务——**运行时编排、流式交互、上下文治理、可观测性**，
+而不只是调通一个 API。
 
-关注方向：
-Agent Runtime、Streaming UI、Enterprise AI。
+📍 杭州　·　📫 731872977@qq.com
+🎯 目标岗位：AI 应用工程师 · AI 前端工程师 · Agent 平台前端
 
 ---
 
@@ -23,7 +21,7 @@ Agent Runtime、Streaming UI、Enterprise AI。
 |---|---|
 | **ERP / OA 复杂业务系统** | 企业 AI 应用要嵌入审批流、权限体系、多角色视图——这是我一直在做的场景 |
 | **复杂业务状态管理** | Agent 是多阶段长时运行任务，前端要处理流式事件、部分失败、重试、取消，状态复杂度远高于传统 CRUD |
-| **前端工程化** | 类型系统、工程规范、CI、可维护架构，让 AI 应用从 Demo 走向可交付 |
+| **前端工程化** | 类型系统、monorepo、CI、可观测性——决定 AI 应用停在原型，还是能交付 |
 | **AI 应用工程（近一年）** | Agent Runtime 编排、Tool Calling、RAG、Prompt 工程、流式 UI |
 
 ## 我在做什么
@@ -50,9 +48,6 @@ Agent Runtime、Streaming UI、Enterprise AI。
 
 ```text
 Planner → WorkflowRunner → ToolExecutor → RAG → Memory → Reflection → Evaluator → Final Answer
-
-面向前端视角，重点解决 Agent 长流程任务中的状态同步、
-事件流展示、多视图一致性问题。
 ```
 
 **技术要点**
@@ -63,7 +58,7 @@ Planner → WorkflowRunner → ToolExecutor → RAG → Memory → Reflection �
 - **RuntimeObject** — 统一投影模型，避免"时间线显示执行中、对话区显示已完成"的状态不一致
 - **Observability** — trace / latency / token 三类指标
 
-**实现边界（如实说明）**
+**实现方式**
 
 - LLM 层支持接入任意 OpenAI 兼容模型（`OPENAI_API_KEY` / `OPENAI_BASE_URL`，含 tool calls 解析）；
   未配置时使用 Mock Provider，保证离线可演示
@@ -73,9 +68,9 @@ Planner → WorkflowRunner → ToolExecutor → RAG → Memory → Reflection �
 
 ---
 
-### [spark-workshop](https://github.com/novedu/spark-workshop) · LLM Application 实践项目
+### [spark-workshop](https://github.com/novedu/spark-workshop) · 灵光一闪 AI 创意工坊
 
-> AI 创意写作工具 把「我有个想法」推进到「可以开书」，中间那段最费脑力的结构工程交给 AI 辅助。
+> 把「我有个想法」推进到「可以开书」，中间那段最费脑力的结构工程交给 AI 辅助。
 
 **真实接入 LLM 的项目**：9 个服务端代理路由 + 完整 Prompt 模板库，通过 OpenAI 兼容网关调用模型，
 API Key 只留在服务端。从一句话灵感出发，生成 3 个世界观方向，进入可编辑大纲，
@@ -89,7 +84,7 @@ API Key 只留在服务端。从一句话灵感出发，生成 3 个世界观方
 
 ---
 
-### [enterprise-admin-kit](https://github.com/novedu/enterprise-admin-kit) · 企业中后台 AI Runtime 架构探索
+### [enterprise-admin-kit](https://github.com/novedu/enterprise-admin-kit) · 企业中后台 + AI Runtime
 
 > Chat 只负责渲染状态，AI 行为由 Runtime 层承接。
 
@@ -111,7 +106,7 @@ Chat UI → useChatRuntime → ChatRuntime → EventBus
 - **RBAC** — 路由 / 菜单 / 按钮 / 字段四级权限控制
 - **治理能力** — Context Manager 的 token 估算与压缩；RuntimeGuard 的超时、重试、熔断
 
-**实现边界（如实说明）**
+**实现方式**
 
 - Provider 层是**架构设计 + Mock / Stub 实现**（已定义能力契约与统一错误模型），
   **尚未接入真实模型**；真实 LLM 接入在 spark-workshop 与 agent-studio 中验证
@@ -140,13 +135,13 @@ Chat UI → useChatRuntime → ChatRuntime → EventBus
 
 ## 实现说明
 
-各项目的**实现边界与真实程度**已在对应仓库 README 中如实披露，关键三处：
+各项目的实现方式与当前范围，详见对应仓库 README：
 
-| 项目 | 实现边界 | 详见 |
+| 项目 | 实现方式 | 详见 |
 |---|---|---|
-| **agent-studio** | LLM 层支持接入 OpenAI 兼容模型（未配置时 Mock 回退，离线可跑）；RAG 为**关键词检索**，无 Embedding / 向量库 | [Implementation Notes](https://github.com/novedu/agent-studio#implementation-notes实现说明) |
-| **spark-workshop** | **真实调用 LLM**（9 个服务端代理路由，API Key 只留服务端）；无自动化测试与 CI | [LLM 接入方式](https://github.com/novedu/spark-workshop#llm-接入方式真实调用) |
-| **enterprise-admin-kit** | Provider 为 **Mock / Stub 实现，未接入真实模型**；知识层为关键词检索 | [Provider 实现状态](https://github.com/novedu/enterprise-admin-kit#provider-实现状态如实说明) |
+| **agent-studio** | LLM 层支持接入 OpenAI 兼容模型（未配置时 Mock 回退，离线可跑）；RAG 为**关键词检索**，无 Embedding / 向量库 | [Implementation Notes](https://github.com/novedu/agent-studio#implementation-notes) |
+| **spark-workshop** | **真实调用 LLM**（9 个服务端代理路由，API Key 只留服务端）；无自动化测试与 CI | [LLM 接入方式](https://github.com/novedu/spark-workshop#llm-接入) |
+| **enterprise-admin-kit** | Provider 为 **Mock / Stub 实现，未接入真实模型**；知识层为关键词检索 | [Provider 实现状态](https://github.com/novedu/enterprise-admin-kit#provider-实现状态) |
 
 另两个项目：`schemaCode` 为**非 AI** 的企业软件架构项目；`World-Link-Alpha` 的 AI 辅助端点为**本地启发式实现**。
 
